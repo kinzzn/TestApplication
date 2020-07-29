@@ -1,10 +1,17 @@
 package com.example.testapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+//import android.content.pm.
+
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Parcel;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +20,30 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
-    private final String TAG = "MainActivity";
-    private final CrashHelper crashHelper = new CrashHelper();
+import java.lang.reflect.Method;
 
+public class MainActivity extends AppCompatActivity {
+    private final static String TAG = "MainActivity";
+    private final static CrashHelper crashHelper = new CrashHelper();
+
+    private static TextView sizeView;
+
+    public final static Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    setSize((String)msg.obj);
+            }
+        }
+    };
+
+    private static void setSize(String obj) {
+        sizeView.setText(obj);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "on Create Debug");
@@ -24,17 +51,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButtonInit();
 
-
+        String packageName = "com.microsoft.sapphire.daily";
 
         PackageManager pm = this.getPackageManager();
         try {
-            ApplicationInfo info = pm.getApplicationInfo("com.example.testapplication",0);
+            ApplicationInfo info = pm.getApplicationInfo(packageName,0);
+
+            StringBuffer sb = new StringBuffer();
+            sb.append(info.loadDescription(pm)+"\n");
+//            sb.append(info.appComponentFactory+"\n");
+            sb.append(info.processName+"\n");
+            sb.append(info.sourceDir+"\n");
+
             TextView infoView = (TextView) findViewById(R.id.appInfoText);
-            infoView.setText(info.toString());
-            System.out.println(info.toString());
+            infoView.setText(sb.toString());
+
+            sizeView = (TextView)findViewById(R.id.appSize);
+            SizeHelper.getPkgSize(this, packageName); //8.0之前
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     private void ButtonInit() {
