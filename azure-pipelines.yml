@@ -19,8 +19,6 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
-- task: AntiMalware@3
-  inputs:
 - task: zip@0
   inputs:
     pathToZipFolder: 'abc'
