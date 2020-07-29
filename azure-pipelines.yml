@@ -12,12 +12,13 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
-    workingDirectory: ''
     gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
+    workingDirectory: '.'
+    tasks: 'build'
+    publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
 - task: AntiMalware@3
   inputs:
 - task: zip@0
