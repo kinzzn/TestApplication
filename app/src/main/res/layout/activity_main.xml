@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.testapplication.MainActivity">
+    <Button
+        android:id = "@+id/nullButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        />
+    <Button
+        android:id = "@+id/threadBlockButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="THREAD BLOCK"
+        />
+    <Button
+        android:id = "@+id/nullPointerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NULL POINTER"
+        />
+    <Button
+        android:id = "@+id/cpuOverloadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CPU OVERLOAD"
+        />
+    <Button
+        android:id = "@+id/memoryLeakButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MEMORY LEAK"
+        />
+    <Button
+        android:id = "@+id/exceptionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EXCEPTION"
+        />
+    <Button
+        android:id = "@+id/errorButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ERROR"
+        />
+    <Button
+        android:id = "@+id/forceCloseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FORCE CLOSE"
+        />
+    <TextView
+        android:id="@+id/appInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
