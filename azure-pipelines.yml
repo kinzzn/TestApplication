@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
-- azure-pipelines-jinran
+- master
 
 pool:
   vmImage: 'macos-latest'
@@ -12,9 +12,9 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
+    workingDirectory: ''
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
+    tasks: 'assembleDebug'
