@@ -8,26 +8,3 @@ trigger:
 
 pool:
   vmImage: 'macos-latest'
-
-steps:
-- task: Gradle@2
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    workingDirectory: '.'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
-- task: zip@0
-  inputs:
-    pathToZipFolder: 'abc'
-    pathToZipFile: 'def'
-    InputType: 'Basic'
-    ScanType: 'CustomScan'
-    FileDirPath: '$(Build.StagingDirectory)'
-    EnableServices: false
-    SupportLogOnError: false
-    TreatSignatureUpdateFailureAs: 'Warning'
-    SignatureFreshness: 'UpToDate'
-    TreatStaleSignatureAs: 'Error'
