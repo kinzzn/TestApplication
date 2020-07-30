@@ -2,6 +2,8 @@ apply plugin: 'com.android.application' // 表示这是一个应用程序模块�
 // com.android.library 是一个库模块，必须衣服其他应用程序模块来运行
 
 android {
+//    useAndroidX true
+//    enableJetifier true
     compileSdkVersion 29        // 项目编译版本
     buildToolsVersion "25.0.3"  // 项目构建工具的版本
     defaultConfig {
@@ -25,7 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions{
-        abortOnError false 
+        abortOnError false
     }
 }
 
