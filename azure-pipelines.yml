@@ -18,11 +18,11 @@ steps:
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
-
 - task: AndroidSigning@3
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'debug.keystore'
+    apksignerKeystoreAlias: 'keyTest'
     zipalign: false
     
 - task: Bash@3
