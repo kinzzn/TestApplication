@@ -23,6 +23,8 @@ steps:
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'debug.keystore'
+    zipalign: false
+    
 - task: Bash@3
   inputs:
     targetType: 'inline'
