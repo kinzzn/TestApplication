@@ -23,6 +23,10 @@ steps:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'debug.keystore'
     apksignerKeystoreAlias: 'keyTest'
+    apksignerKeystorePassword: ''
+    apksignerKeyPassword: ''
+
+
     zipalign: false
     
 - task: Bash@3
