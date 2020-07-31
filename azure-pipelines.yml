@@ -23,8 +23,8 @@ steps:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'debug.keystore'
     apksignerKeystoreAlias: 'keyTest'
-    apksignerKeystorePassword: ''
-    apksignerKeyPassword: ''
+    apksignerKeystorePassword: 'android'
+    apksignerKeyPassword: 'android'
 
 
     zipalign: false
