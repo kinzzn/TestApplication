@@ -36,7 +36,7 @@ steps:
       echo "Emulator started"
 - task: AppCenterTest@1
   inputs:
-    appFile: 'app/build/outputs/apk/debug/app-debug.apk'
+    appFile: 'app-debug.apk'
     artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
     prepareTests: false
     runTests: false
