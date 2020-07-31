@@ -1,0 +1,53 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+    
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      #!/usr/bin/env bash
+      
+      # Install AVD files
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
+      
+      # Create emulator
+      echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n xamarin_android_emulator -k 'system-images;android-27;google_apis;x86' --force
+      
+      $ANDROID_HOME/emulator/emulator -list-avds
+      
+      echo "Starting emulator"
+      
+      # Start emulator in background
+      nohup $ANDROID_HOME/emulator/emulator -avd xamarin_android_emulator -no-snapshot > /dev/null 2>&1 &
+      $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      
+      $ANDROID_HOME/platform-tools/adb devices
+      
+      echo "Emulator started"
+- task: AppCenterTest@1
+  inputs:
+    appFile: 'app-debug.apk'
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+    prepareTests: false
+    runTests: false
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      adb devices
+      adb install -t -r app-debug.apk
+      pip install --upgrade --pre uiautomator2
+      git clone https://github.com/openatx/uiautomator2
+      pip3 install -e uiautomator2
+      pip3 list
+      python3 uiautomator.py
