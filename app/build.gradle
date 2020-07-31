@@ -16,6 +16,7 @@ android {
     }
     buildTypes { // 安装文件的配置
         debug{
+            debuggable false
         }
         release {
             minifyEnabled false // 是否对项目代码进行混淆
@@ -41,6 +42,8 @@ dependencies {
 //    implementation 'com.android.support:appcompat-v7:25.4.0'
     testImplementation 'junit:junit:4.12'  // 测试用例库
     androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+
+     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.2"
 }
 
 // Android Studio的三种依赖：
