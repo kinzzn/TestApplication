@@ -45,5 +45,9 @@ steps:
   inputs:
     script: |
       adb devices
-      adb shell
+      pip install --upgrade --pre uiautomator2
+      git clone https://github.com/openatx/uiautomator2
+      pip install -e uiautomator2
+      pip list
+      python uiautomator.py
       dumpsys activity activities | grep mFocus
