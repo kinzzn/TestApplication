@@ -45,7 +45,7 @@ steps:
   inputs:
     script: |
       adb devices
-      abd install app-debug.apk
+      adb install app-debug.apk
       pip install --upgrade --pre uiautomator2
       git clone https://github.com/openatx/uiautomator2
       pip3 install -e uiautomator2
